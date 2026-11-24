@@ -17,3 +17,6 @@ The toaster has gone on strike. It refuses to do its one job — browning — un
 `ERR 0x07: Toaster on strike. No browning until the crumb tray is cleaned and a day off is granted.`
 
 Title: Toaster on Strike
+
+## Revision (2026-11-24)
+Added validate_entry() gate to main.py: the entry must be 1-120 chars, a single line, with no leading/trailing whitespace and no double spaces, else SystemExit naming the rule violated. write_entry() is now atomic (temp file + os.replace) so a crash leaves either the old or the new complete file, never a partial one. The entry line itself is untouched (still 98 chars, byte-identical output).
